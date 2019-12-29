@@ -1,42 +1,81 @@
 {
-	"name": "translator-helper",
-	"displayName": "Translator Helper",
-	"description": "A tool to improve the efficiency of the translation, especially for the localization of Docs.",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.41.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.7",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.41.0",
-		"glob": "^7.1.5",
-		"mocha": "^6.2.2",
-		"typescript": "^3.6.4",
-		"tslint": "^5.20.0",
-		"vscode-test": "^1.2.2"
-	}
+    "name": "translator-helper",
+    "displayName": "Translator Helper",
+    "description": "A tool to improve the efficiency of the translation, especially for the localization of Docs.",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.translateInsert"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [{
+            "command": "extension.translateInsert",
+            "title": "Translate & Insert"
+        }],
+        "keybindings": [{
+            "command": "extension.translateInsert",
+            "key": "ctrl+t",
+            "mac": "cmd+t",
+            "when": "editorTextFocus"
+        }],
+        "configuration": {
+            "title": "Translator Helper",
+            "properties": {
+                "translatorHelper.api": {
+                    "type": "string",
+                    "default": "google",
+                    "enum": [
+                        "google",
+                        "google-cn",
+                        "microsoft"
+                    ],
+                    "enumDescriptions": [
+                        "Google Translation API.",
+                        "Google Translation API for Chinese users.",
+                        "Translator Text API of Microsoft Cognitive Service"
+                    ],
+                    "description": "Specify the api to translate the text."
+                },
+                "translatorHelper.sourceLanguage": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "The source language to be translated."
+                },
+                "translatorHelper.targetLanguage": {
+                    "type": "string",
+                    "default": "zh-CN",
+                    "description": "The target language."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.41.0",
+        "glob": "^7.1.5",
+        "mocha": "^6.2.2",
+        "typescript": "^3.6.4",
+        "tslint": "^5.20.0",
+        "vscode-test": "^1.2.2"
+    },
+    "dependencies": {
+        "@types/google-translate-api": "^2.3.0",
+        "@vitalets/google-translate-api": "^3.0.0",
+        "google-translate-api-cn": "^1.0.2"
+    }
 }
