@@ -7,6 +7,13 @@ import * as googleTranslateCN from 'google-translate-api-cn';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	let config = vscode.workspace.getConfiguration("translatorHelper");
+	const api = config.api;
+	const source = config.sourceLanguage;
+	const target = config.targetLanguage;
+	const servie = TranslationServiceFactory.createServiceInstance(api);
+	const docService = new DocService();
+	let statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -15,14 +22,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.translateInsert', async () => {
+	let translateInsert = vscode.commands.registerCommand('extension.translateInsert', async () => {
 		// The code you place here will be executed every time your command is executed
-		let config = vscode.workspace.getConfiguration("translatorHelper");
-		const api = config.api;
-		const source = config.sourceLanguage;
-		const target = config.targetLanguage;
-		const servie = TranslationServiceFactory.createServiceInstance(api);
-		const docService = new DocService();
 		const text = docService.getParagraph();
 		try {
 			let result = await servie.translate(text, source, target);
@@ -35,7 +36,25 @@ export function activate(context: vscode.ExtensionContext) {
 		//vscode.window.showInformationMessage('Hello World!');
 	});
 
-	context.subscriptions.push(disposable);
+	let translate = vscode.commands.registerCommand('extension.translate', async () => {
+		// The code you place here will be executed every time your command is executed
+		const text = docService.getSelectionText();
+		try {
+			const result = await servie.translate(text, source, target);
+			if(statusBarItem !== undefined){
+				statusBarItem.dispose();
+			}
+			statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+			statusBarItem.text = `$(book) ${result}`;
+			statusBarItem.show();
+		} catch (error) {
+			vscode.window.showErrorMessage(`Error occurs. ${error.message}`);
+		}
+
+		// Display a message box to the user
+		//vscode.window.showInformationMessage('Hello World!');
+	});
+	context.subscriptions.push(translateInsert, translate);
 }
 
 // this method is called when your extension is deactivated
@@ -110,6 +129,14 @@ class DocService {
 			else {
 				return "";
 			}
+		} else {
+			return "";
+		}
+	}
+
+	getSelectionText(): string{
+		if (this.editor !== undefined) {
+			return this.editor.document.getText(this.editor.selection);
 		} else {
 			return "";
 		}
