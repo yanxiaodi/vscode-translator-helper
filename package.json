@@ -3,7 +3,7 @@
     "displayName": "Translator Helper",
     "description": "A tool to improve the efficiency of the translation, especially for the localization of Docs.",
     "version": "0.0.1",
-    "publisher": "Xiaodi Yan",
+    "publisher": "XiaodiYan",
     "repository": "https://github.com/yanxiaodi/vscode-translator-helper",
     "engines": {
         "vscode": "^1.41.0"
