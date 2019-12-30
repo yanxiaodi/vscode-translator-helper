@@ -11,6 +11,28 @@
     "categories": [
         "Other"
     ],
+    "badges": [{
+            "url": "https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_apis/build/status/yanxiaodi.vscode-translator-helper?branchName=master",
+            "href": "https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_build?definitionId=58",
+            "description": "Azure DevOps Pipilines status"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/version/XiaodiYan.translator-helper.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper",
+            "description": "Current Version"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/installs/XiaodiYan.translator-helper.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper",
+            "description": "Install Count"
+        },
+        {
+            "url": "https://vsmarketplacebadge.apphb.com/rating/XiaodiYan.translator-helper.svg",
+            "href": "https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper",
+            "description": "Ratings"
+        }
+    ],
+    "icon": "images/icon.png",
     "activationEvents": [
         "onCommand:translatorHelper.translateInsert",
         "onCommand:translatorHelper.translate"

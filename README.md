@@ -1,6 +1,11 @@
 # translator-helper README
 
-**translator-helper** is a VS Code Extension to simplify the translation of documents, especially for the locilization of Docs.
+[![Build Status](https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_apis/build/status/yanxiaodi.vscode-translator-helper?branchName=master)](https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_build/latest?definitionId=58&branchName=master)
+[![Current Version](https://vsmarketplacebadge.apphb.com/version/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+[![Install Count](https://vsmarketplacebadge.apphb.com/installs/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+[![Ratings](https://vsmarketplacebadge.apphb.com/rating/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+
+**translator-helper** is a VS Code Extension to simplify the translation of documents, especially for the localization of Docs.
 
 ## Features
 
@@ -8,6 +13,7 @@ Google translate API supported. For Chinese users, you can update the settings t
 
 * Translate: `Ctrl`+`T`. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. Click the text, it will be copied to the clipboard.
   
+
 ![Translate](images/sample1.gif)
 
 * Translate and Insert. `Alt`+`T`. It is very useful when you localize the docs. Click any position in the paragraph, then press Alt+T. The whole paragraph will be translated then inserted after the original text.
