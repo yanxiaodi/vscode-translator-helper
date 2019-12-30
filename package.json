@@ -12,27 +12,27 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.translateInsert",
-        "onCommand:extension.translate"
+        "onCommand:translatorHelper.translateInsert",
+        "onCommand:translatorHelper.translate"
     ],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [{
-                "command": "extension.translateInsert",
+                "command": "translatorHelper.translateInsert",
                 "title": "Translate & Insert"
             },
             {
-                "command": "extension.translate",
+                "command": "translatorHelper.translate",
                 "title": "Translate"
             }
         ],
         "keybindings": [{
-                "command": "extension.translateInsert",
+                "command": "translatorHelper.translateInsert",
                 "key": "alt+t",
                 "when": "editorTextFocus"
             },
             {
-                "command": "extension.translate",
+                "command": "translatorHelper.translate",
                 "key": "ctrl+t",
                 "when": "editorHasSelection"
             }
