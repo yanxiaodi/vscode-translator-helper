@@ -45,13 +45,11 @@
                     "default": "google",
                     "enum": [
                         "google",
-                        "google-cn",
-                        "microsoft"
+                        "google-cn"
                     ],
                     "enumDescriptions": [
                         "Google Translation API.",
-                        "Google Translation API for Chinese users.",
-                        "Translator Text API of Microsoft Cognitive Service"
+                        "Google Translation API for Chinese users."
                     ],
                     "description": "Specify the api to translate the text."
                 },
@@ -87,7 +85,6 @@
         "vscode-test": "^1.2.2"
     },
     "dependencies": {
-        "@types/google-translate-api": "^2.3.0",
         "@vitalets/google-translate-api": "^3.0.0",
         "google-translate-api-cn": "^1.0.2"
     }

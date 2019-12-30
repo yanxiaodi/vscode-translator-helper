@@ -26,10 +26,13 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	let translateInsert = vscode.commands.registerCommand('translatorHelper.translateInsert', async () => {
 		// The code you place here will be executed every time your command is executed
+		docService.setCurrentEditor();
 		const text = docService.getParagraph();
 		try {
-			let result = await servie.translate(text, source, target);
-			docService.insertText(result);
+			if (text.trim() !== '') {
+				let result = await servie.translate(text, source, target);
+				docService.insertText(result);
+			}
 		} catch (error) {
 			vscode.window.showErrorMessage(`Error occurs. ${error.message}`);
 		}
@@ -40,12 +43,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let translate = vscode.commands.registerCommand('translatorHelper.translate', async () => {
 		// The code you place here will be executed every time your command is executed
+		docService.setCurrentEditor();
 		const text = docService.getSelectionText();
 		try {
-			const result = await servie.translate(text, source, target);
-			statusBarItem.hide();
-			statusBarItem.text = `$(book) ${result}`;
-			statusBarItem.show();
+			if (text.trim() !== '') {
+				const result = await servie.translate(text, source, target);
+				statusBarItem.hide();
+				statusBarItem.text = `$(book) ${result}`;
+				statusBarItem.show();
+			} else {
+				statusBarItem.hide();
+			}
 		} catch (error) {
 			vscode.window.showErrorMessage(`Error occurs. ${error.message}`);
 		}
@@ -115,13 +123,9 @@ class TranslationServiceFactory {
 
 class DocService {
 	editor: vscode.TextEditor | undefined;
-	constructor() {
-		let currentEditor = vscode.window.activeTextEditor;
-		if (currentEditor) {
-			this.editor = currentEditor;
-		} else {
-			this.editor = undefined;
-		}
+
+	setCurrentEditor(): void {
+		this.editor = vscode.window.activeTextEditor;
 	}
 
 	getParagraph(): string {
