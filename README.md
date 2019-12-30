@@ -6,10 +6,13 @@
 
 Google translate API supported. For Chinese users, you can update the settings to use GoogleCN services. Microsoft Cognitive API has not been implemented.
 
-* Translate: Ctrl+T. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. Click the text, it will be copied to the clipboard.
-  ![Translate](images/sample1.gif)
-* Translate and Insert. Alt+T. It is very useful when you localize the docs. Click any position in the paragraph, then press Alt+T. The whole paragraph will be translated then inserted after the original text.
-  ![Translate and Insert](images/sample2.gif)
+* Translate: `Ctrl`+`T`. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. Click the text, it will be copied to the clipboard.
+  
+![Translate](images/sample1.gif)
+
+* Translate and Insert. `Alt`+`T`. It is very useful when you localize the docs. Click any position in the paragraph, then press Alt+T. The whole paragraph will be translated then inserted after the original text.
+
+![Translate and Insert](images/sample2.gif)
 
 ## Extension Settings
 
