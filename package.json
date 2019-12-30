@@ -17,8 +17,7 @@
     ],
     "main": "./dist/extension",
     "contributes": {
-        "commands": [
-            {
+        "commands": [{
                 "command": "translatorHelper.translateInsert",
                 "title": "Translate & Insert"
             },
@@ -27,8 +26,7 @@
                 "title": "Translate"
             }
         ],
-        "keybindings": [
-            {
+        "keybindings": [{
                 "command": "translatorHelper.translateInsert",
                 "key": "alt+t",
                 "when": "editorTextFocus"
@@ -76,7 +74,8 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "pretest": "npm run compile",
-        "test": "node ./out/test/runTest.js"
+        "test": "node ./out/test/runTest.js",
+        "deploy": "vsce publish --yarn"
     },
     "devDependencies": {
         "@types/glob": "^7.1.1",
@@ -88,6 +87,7 @@
         "ts-loader": "^6.2.1",
         "tslint": "^5.20.0",
         "typescript": "^3.6.4",
+        "vsce": "^1.71.0",
         "vscode-test": "^1.2.2",
         "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10"
