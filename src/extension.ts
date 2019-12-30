@@ -13,8 +13,10 @@ export function activate(context: vscode.ExtensionContext) {
 	const target = config.targetLanguage;
 	const servie = TranslationServiceFactory.createServiceInstance(api);
 	const docService = new DocService();
-	let statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+	const copyTranslationTextCommandId = 'translatorHelper.copyTranslationText';
 
+	let statusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+	statusBarItem.command = copyTranslationTextCommandId;
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	//console.log('Congratulations, your extension "translator-helper" is now active!');
@@ -41,10 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const text = docService.getSelectionText();
 		try {
 			const result = await servie.translate(text, source, target);
-			if(statusBarItem !== undefined){
-				statusBarItem.dispose();
-			}
-			statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+			statusBarItem.hide();
 			statusBarItem.text = `$(book) ${result}`;
 			statusBarItem.show();
 		} catch (error) {
@@ -54,7 +53,17 @@ export function activate(context: vscode.ExtensionContext) {
 		// Display a message box to the user
 		//vscode.window.showInformationMessage('Hello World!');
 	});
-	context.subscriptions.push(translateInsert, translate);
+
+	let copyTranslationText = vscode.commands.registerCommand(copyTranslationTextCommandId, () => {
+		try {
+			vscode.env.clipboard.writeText(statusBarItem.text.replace('$(book) ', ''));
+			vscode.window.showInformationMessage(`Translation text copyied to the clipboard!`);
+		} catch (error) {
+			vscode.window.showErrorMessage(`Error occurs. ${error.message}`);
+		}
+
+	});
+	context.subscriptions.push(translateInsert, translate, copyTranslationText);
 }
 
 // this method is called when your extension is deactivated
@@ -83,18 +92,18 @@ class GoogleCNTranslationService implements ITranslatorService {
 
 class MicrosoftTranslationService implements ITranslatorService {
 	translate(text: string, source: string, target: string): Promise<string> {
-		throw new Error("Method not implemented.");
+		throw new Error('Method not implemented.');
 	}
 }
 
 class TranslationServiceFactory {
 	static createServiceInstance(api: string): ITranslatorService {
-		switch (api) {
-			case "google":
+		switch (api.toLowerCase()) {
+			case 'google':
 				return new GoogleTranslationService();
-			case "google-cn":
+			case 'google-cn':
 				return new GoogleCNTranslationService();
-			case "microsoft":
+			case 'microsoft':
 				return new MicrosoftTranslationService();
 			default:
 				return new GoogleTranslationService();
@@ -127,18 +136,18 @@ class DocService {
 				return result;
 			}
 			else {
-				return "";
+				return '';
 			}
 		} else {
-			return "";
+			return '';
 		}
 	}
 
-	getSelectionText(): string{
+	getSelectionText(): string {
 		if (this.editor !== undefined) {
 			return this.editor.document.getText(this.editor.selection);
 		} else {
-			return "";
+			return '';
 		}
 	}
 
