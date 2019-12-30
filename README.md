@@ -4,7 +4,7 @@
 
 ## Features
 
-Google translate API supported. For Chinese users, you can update the settings to use GoogleCN services. Microsoft Cognitive API has not been implemented.
+Google translate API supported. For Chinese users, you can update the settings to use GoogleCN service.
 
 * Translate: `Ctrl`+`T`. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. Click the text, it will be copied to the clipboard.
   
