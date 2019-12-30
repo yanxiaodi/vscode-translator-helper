@@ -15,9 +15,10 @@
         "onCommand:translatorHelper.translateInsert",
         "onCommand:translatorHelper.translate"
     ],
-    "main": "./out/extension.js",
+    "main": "./dist/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "translatorHelper.translateInsert",
                 "title": "Translate & Insert"
             },
@@ -26,7 +27,8 @@
                 "title": "Translate"
             }
         ],
-        "keybindings": [{
+        "keybindings": [
+            {
                 "command": "translatorHelper.translateInsert",
                 "key": "alt+t",
                 "when": "editorTextFocus"
@@ -67,7 +69,10 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
+        "vscode:prepublish": "webpack --mode production",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch",
+        "test-compile": "tsc -p ./",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "pretest": "npm run compile",
@@ -80,9 +85,12 @@
         "@types/vscode": "^1.41.0",
         "glob": "^7.1.5",
         "mocha": "^6.2.2",
-        "typescript": "^3.6.4",
+        "ts-loader": "^6.2.1",
         "tslint": "^5.20.0",
-        "vscode-test": "^1.2.2"
+        "typescript": "^3.6.4",
+        "vscode-test": "^1.2.2",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10"
     },
     "dependencies": {
         "@vitalets/google-translate-api": "^3.0.0",
