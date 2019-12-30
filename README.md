@@ -24,7 +24,7 @@ This extension contributes the following settings:
 * `translatorHelper.sourceLanguage`: The source language code. The default value is `en`.
 * `translatorHelper.targetLanguage`: The target language code. The default value is `zh-CN`.
 
-The source and target languages are identified using the [iso-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) codes. For example, the source language is English (en) and the target language is Chinese-Simplified (zh-CN).
+The source and target languages are identified using the [iso-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) codes. For example, the source language is English (en) and the target language is Chinese-Simplified (zh-CN). You can find all the supported languages here: [Language support](https://cloud.google.com/translate/docs/languages)
 
 ![Settings](images/settings.png)
 
