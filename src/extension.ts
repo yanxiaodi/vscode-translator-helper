@@ -41,6 +41,23 @@ export function activate(context: vscode.ExtensionContext) {
 		//vscode.window.showInformationMessage('Hello World!');
 	});
 
+	let reverseTranslateInsert = vscode.commands.registerCommand('translatorHelper.reverseTranslateInsert', async () => {
+		// The code you place here will be executed every time your command is executed
+		docService.setCurrentEditor();
+		const text = docService.getParagraph();
+		try {
+			if (text.trim() !== '') {
+				let result = await servie.translate(text, target, source);
+				docService.insertText(result);
+			}
+		} catch (error) {
+			vscode.window.showErrorMessage(`Error occurs. ${error.message}`);
+		}
+
+		// Display a message box to the user
+		//vscode.window.showInformationMessage('Hello World!');
+	});
+
 	let translate = vscode.commands.registerCommand('translatorHelper.translate', async () => {
 		// The code you place here will be executed every time your command is executed
 		docService.setCurrentEditor();
@@ -71,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 	});
-	context.subscriptions.push(translateInsert, translate, copyTranslationText);
+	context.subscriptions.push(translateInsert, reverseTranslateInsert, translate, copyTranslationText);
 }
 
 // this method is called when your extension is deactivated
