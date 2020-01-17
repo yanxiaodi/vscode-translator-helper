@@ -2,7 +2,7 @@
     "name": "translator-helper",
     "displayName": "Translator Helper",
     "description": "A tool to improve the efficiency of the translation, especially for the localization of Docs.",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "publisher": "XiaodiYan",
     "repository": "https://github.com/yanxiaodi/vscode-translator-helper",
     "engines": {
@@ -35,6 +35,7 @@
     "icon": "images/icon.png",
     "activationEvents": [
         "onCommand:translatorHelper.translateInsert",
+        "onCommand:translatorHelper.reverseTranslateInsert",
         "onCommand:translatorHelper.translate"
     ],
     "main": "./dist/extension",
@@ -44,6 +45,10 @@
                 "title": "Translate & Insert"
             },
             {
+                "command": "translatorHelper.reverseTranslateInsert",
+                "title": "Reverse Translate & Insert"
+            },
+            {
                 "command": "translatorHelper.translate",
                 "title": "Translate"
             }
@@ -51,6 +56,11 @@
         "keybindings": [{
                 "command": "translatorHelper.translateInsert",
                 "key": "alt+t",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "translatorHelper.reverseTranslateInsert",
+                "key": "shift+alt+t",
                 "when": "editorTextFocus"
             },
             {
