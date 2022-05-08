@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import * as googleTranslate from '@vitalets/google-translate-api';
+import googleTranslateApi from '@vitalets/google-translate-api';
 // import * as googleTranslateCN from 'google-translate-cn';
 
 // this method is called when your extension is activated
@@ -128,9 +128,8 @@ class GoogleTranslationService implements ITranslatorService {
     source: string,
     target: string
   ): Promise<string> {
-    const service = googleTranslate;
     try {
-      let result = await service(text, { from: source, to: target });
+      let result = await googleTranslateApi(text, { from: source, to: target });
       return result.text;
     } catch (error: any) {
       throw error;
@@ -144,9 +143,12 @@ class GoogleCNTranslationService implements ITranslatorService {
     source: string,
     target: string
   ): Promise<string> {
-    const service = googleTranslate;
     try {
-      let result = await service(text, { from: source, to: target, tld: 'cn' });
+      let result = await googleTranslateApi(text, {
+        from: source,
+        to: target,
+        tld: 'cn',
+      });
       return result.text;
     } catch (error: any) {
       throw error;
