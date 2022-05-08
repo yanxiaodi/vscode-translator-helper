@@ -28,6 +28,8 @@ steps:
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
 - bash: |
+    echo ">>> Restore"
+    npm install
     echo ">>> Pretest"
     npm run pretest
     echo ">>> Run tests"
