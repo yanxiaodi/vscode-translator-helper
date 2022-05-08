@@ -18,7 +18,7 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '6.15.0'
+    versionSpec: '16.15.0'
   displayName: 'Install Node.js'
 
 - bash: |
@@ -28,12 +28,10 @@ steps:
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
 - bash: |
-    echo ">>> Restore"
-    npm install
-    echo ">>> Pretest"
-    npm run pretest
-    echo ">>> Run tests"
-    npm run test
+    echo ">>> Compile vscode-test"
+    yarn && yarn compile
+    echo ">>> Run integration test"
+    yarn && yarn compile && yarn test
   displayName: Run Tests
   env:
     DISPLAY: ':99.0'
