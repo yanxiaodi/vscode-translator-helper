@@ -43,4 +43,4 @@ steps:
   displayName: Publish
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
   env:
-    VSCE_PAT: $(VSCODE_MARKETPLACE_TOKEN)
+    VSCE_PAT: $(VSCE_PAT)
