@@ -7,11 +7,9 @@ trigger:
 strategy:
   matrix:
     linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
+      imageName: 'ubuntu-latest'
     windows:
-      imageName: 'vs2017-win2016'
+      imageName: 'windows-latest'
 
 pool:
   vmImage: $(imageName)
@@ -20,7 +18,7 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '8.x'
+    versionSpec: '6.15.0'
   displayName: 'Install Node.js'
 
 - bash: |
@@ -30,18 +28,10 @@ steps:
   condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
 
 - bash: |
-    echo ">>> Compile vscode-test"
-    yarn && yarn compile
-    echo ">>> Compiled vscode-test"
-    cd sample
-    echo ">>> Run sample integration test"
-    yarn && yarn compile && yarn test
+    echo ">>> Pretest"
+    npm run pretest
+    echo ">>> Run tests"
+    npm run test
   displayName: Run Tests
   env:
     DISPLAY: ':99.0'
-
-- bash: |
-    echo ">>> Publish"
-    yarn deploy -p $(VSCODE_MARKETPLACE_TOKEN)
-  displayName: Publish
-  condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
