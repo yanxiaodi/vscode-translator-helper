@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import { CommandIds } from './consts';
 import { ITranslatorService } from './translate-service';
 import {
   getParagraph,
@@ -6,6 +6,40 @@ import {
   insertText,
   setCurrentEditor,
 } from './doc-service';
+import { commands, env, ExtensionContext, StatusBarItem, window } from 'vscode';
+
+export const regiserCommands = (
+  context: ExtensionContext,
+  servie: ITranslatorService,
+  source: string,
+  target: string,
+  statusBarItem: StatusBarItem
+) => {
+  let translateInsert = commands.registerCommand(
+    CommandIds.translateInsertCommand,
+    async () => await translateInsertCommand(servie, source, target)
+  );
+  let reverseTranslateInsert = commands.registerCommand(
+    CommandIds.reverseTranslateInsertCommand,
+    async () => await reverseTranslateInsertCommand(servie, source, target)
+  );
+
+  let translate = commands.registerCommand(
+    CommandIds.translateCommand,
+    async () => await translateCommand(servie, source, target, statusBarItem)
+  );
+
+  let copyTranslationText = commands.registerCommand(
+    CommandIds.copyTranslationTextCommand,
+    () => copyTranslationTextCommand(statusBarItem)
+  );
+  context.subscriptions.push(
+    translateInsert,
+    reverseTranslateInsert,
+    translate,
+    copyTranslationText
+  );
+};
 
 export const translateInsertCommand = async (
   translatorService: ITranslatorService,
@@ -21,11 +55,8 @@ export const translateInsertCommand = async (
       insertText(result);
     }
   } catch (error: any) {
-    vscode.window.showErrorMessage(`Error occurs. ${error}`);
+    window.showErrorMessage(`Error occurs. ${error}`);
   }
-
-  // Display a message box to the user
-  //vscode.window.showInformationMessage('Hello World!');
 };
 
 export const reverseTranslateInsertCommand = async (
@@ -42,7 +73,7 @@ export const reverseTranslateInsertCommand = async (
       insertText(result);
     }
   } catch (error: any) {
-    vscode.window.showErrorMessage(`Error occurs. ${error}`);
+    window.showErrorMessage(`Error occurs. ${error}`);
   }
 };
 
@@ -50,7 +81,7 @@ export const translateCommand = async (
   translatorService: ITranslatorService,
   source: string,
   target: string,
-  statusBarItem: vscode.StatusBarItem
+  statusBarItem: StatusBarItem
 ) => {
   // The code you place here will be executed every time your command is executed
   setCurrentEditor();
@@ -66,22 +97,18 @@ export const translateCommand = async (
       statusBarItem.hide();
     }
   } catch (error: any) {
-    vscode.window.showErrorMessage(`Error occurs. ${error}`);
+    window.showErrorMessage(`Error occurs. ${error}`);
   }
 
   // Display a message box to the user
   //vscode.window.showInformationMessage('Hello World!');
 };
 
-export const copyTranslationTextCommand = (
-  statusBarItem: vscode.StatusBarItem
-) => {
+export const copyTranslationTextCommand = (statusBarItem: StatusBarItem) => {
   try {
-    vscode.env.clipboard.writeText(statusBarItem.text.replace('$(book) ', ''));
-    vscode.window.showInformationMessage(
-      `Translation text copyied to the clipboard!`
-    );
+    env.clipboard.writeText(statusBarItem.text.replace('$(book) ', ''));
+    window.showInformationMessage(`Translation text copyied to the clipboard!`);
   } catch (error: any) {
-    vscode.window.showErrorMessage(`Error occurs. ${error}`);
+    window.showErrorMessage(`Error occurs. ${error}`);
   }
 };

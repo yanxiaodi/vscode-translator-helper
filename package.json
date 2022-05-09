@@ -2,7 +2,7 @@
     "name": "translator-helper",
     "displayName": "Translator Helper",
     "description": "A tool to improve the efficiency of the translation, especially for the localization of Docs.",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "XiaodiYan",
     "repository": "https://github.com/yanxiaodi/vscode-translator-helper",
     "engines": {
@@ -10,6 +10,14 @@
     },
     "categories": [
         "Other"
+    ],
+    "keywords": [
+        "translate",
+        "translator",
+        "translation",
+        "google translate",
+        "interpret",
+        "翻译"
     ],
     "badges": [{
             "url": "https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_apis/build/status/yanxiaodi.vscode-translator-helper?branchName=master",
@@ -34,9 +42,7 @@
     ],
     "icon": "images/icon.png",
     "activationEvents": [
-        "onCommand:translatorHelper.translateInsert",
-        "onCommand:translatorHelper.reverseTranslateInsert",
-        "onCommand:translatorHelper.translate"
+        "*"
     ],
     "main": "./dist/extension.js",
     "contributes": {
@@ -94,6 +100,11 @@
                     "type": "string",
                     "default": "zh-CN",
                     "description": "The target language."
+                },
+                "translatorHelper.enableSelectionHoverTranslation": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable the hover translation when the selection is not empty."
                 }
             }
         }

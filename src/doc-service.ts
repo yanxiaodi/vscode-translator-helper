@@ -1,9 +1,9 @@
-import * as vscode from 'vscode';
+import { Position, Selection, TextEditor, window } from 'vscode';
 
-let editor: vscode.TextEditor | undefined;
+let editor: TextEditor | undefined;
 
 export const setCurrentEditor = () => {
-  editor = vscode.window.activeTextEditor;
+  editor = window.activeTextEditor;
 };
 
 export const getParagraph = (): string => {
@@ -11,12 +11,7 @@ export const getParagraph = (): string => {
     let startLine = editor.selection.start.line;
     let endLine = editor.selection.end.line;
     const endCharacter = editor.document.lineAt(endLine).text.length;
-    editor.selection = new vscode.Selection(
-      startLine,
-      0,
-      startLine,
-      endCharacter
-    );
+    editor.selection = new Selection(startLine, 0, startLine, endCharacter);
     var paragraph = editor.selection;
     let result = editor.document.getText(paragraph);
     if (result !== undefined) {
@@ -48,11 +43,11 @@ export const insertText = (text: string): void => {
       .then((success) => {
         if (success && editor !== undefined) {
           let end = editor.selection.end;
-          editor.selection = new vscode.Selection(end, end);
+          editor.selection = new Selection(end, end);
           let startLine = editor.selection.start.line;
           let endLine = editor.selection.end.line;
           const endCharacter = editor.document.lineAt(endLine).text.length;
-          editor.selection = new vscode.Selection(
+          editor.selection = new Selection(
             startLine,
             0,
             startLine,
@@ -61,4 +56,12 @@ export const insertText = (text: string): void => {
         }
       });
   }
+};
+
+export const isHoverOnSelection = (position: Position): boolean => {
+  return (
+    editor !== undefined &&
+    !editor.selection.isEmpty &&
+    editor.selection.contains(position)
+  );
 };

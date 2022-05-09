@@ -7,6 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.3.0]
 
 - Automatically copy the translated text to clipboard for the `translate` command.
+- Support selection hover translation. You can select a word or a sentence, then you will see a popup with the translated text. You can turn off this feature in the settings.
 
 ## [0.2.0]
 
