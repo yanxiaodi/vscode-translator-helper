@@ -1,3 +1,4 @@
+import { getContent } from './store';
 import { CommandIds } from './consts';
 import { ITranslatorService } from './translate-service';
 import {
@@ -31,7 +32,7 @@ export const regiserCommands = (
 
   let copyTranslationText = commands.registerCommand(
     CommandIds.copyTranslationTextCommand,
-    () => copyTranslationTextCommand(statusBarItem)
+    copyTranslationTextCommand
   );
   context.subscriptions.push(
     translateInsert,
@@ -92,7 +93,8 @@ export const translateCommand = async (
       statusBarItem.hide();
       statusBarItem.text = `$(book) ${result}`;
       statusBarItem.show();
-      copyTranslationTextCommand(statusBarItem);
+      // Copy to clipboard
+      copyToClipboard(result);
     } else {
       statusBarItem.hide();
     }
@@ -104,11 +106,16 @@ export const translateCommand = async (
   //vscode.window.showInformationMessage('Hello World!');
 };
 
-export const copyTranslationTextCommand = (statusBarItem: StatusBarItem) => {
+export const copyTranslationTextCommand = () => {
   try {
-    env.clipboard.writeText(statusBarItem.text.replace('$(book) ', ''));
-    window.showInformationMessage(`Translation text copyied to the clipboard!`);
+    var content = getContent();
+    copyToClipboard(content);
   } catch (error: any) {
     window.showErrorMessage(`Error occurs. ${error}`);
   }
+};
+
+const copyToClipboard = (content: string) => {
+  env.clipboard.writeText(content);
+  window.showInformationMessage(`Translation text copyied to the clipboard!`);
 };

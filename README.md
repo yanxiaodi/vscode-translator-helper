@@ -11,15 +11,19 @@
 
 Google translate API supported. For Chinese users, you can update the settings to use GoogleCN service.
 
-- Translate: <kbd>Ctrl</kbd>+<kbd>T</kbd>. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. Click the text, it will be copied to the clipboard.
-
-![Translate](images/sample1.gif)
-
 - Translate and Insert. <kbd>Alt</kbd>+<kbd>T</kbd>. It is very useful when you localize the docs. Click any position in the paragraph, then press Alt+T. The whole paragraph will be translated then inserted after the original text.
 
 ![Translate and Insert](images/sample2.gif)
 
 - Reverse Translate and Insert: <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>. Translate the text from the _target_ language to the _source_ language.
+
+- Select and Hover Translate. You can select a word or a sentence, hover the mouse over the text, then the text will be translated in a popup. You can click **Copy** to copy the translated text.
+
+![Selection and Hover Translation](images/sample3.gif)
+
+- Translate: <kbd>Ctrl</kbd>+<kbd>T</kbd>. Select a word or a sentence, then press Ctrl+T. The translated text will be shown on the status bar. The text will be automatically copied to the clipboard.
+
+![Translate](images/sample1.gif)
 
 ## Extension Settings
 
