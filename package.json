@@ -140,7 +140,7 @@
         "webpack-cli": "^4.9.2"
     },
     "dependencies": {
-        "@vitalets/google-translate-api": "^8.0.0"
+        "@vitalets/google-translate-api": "^9.1.0"
     },
     "__metadata": {
         "id": "a03f7447-1f1b-4984-a7e5-eeaf3e9c2e2c",
