@@ -1,9 +1,9 @@
 # translator-helper README
 
 [![Build Status](https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_apis/build/status/yanxiaodi.vscode-translator-helper?branchName=master)](https://dev.azure.com/xiaodiyan/VSCode%20TranslatorHelper/_build/latest?definitionId=58&branchName=master)
-[![Current Version](https://vsmarketplacebadge.apphb.com/version/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
-[![Install Count](https://vsmarketplacebadge.apphb.com/installs/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
-[![Ratings](https://vsmarketplacebadge.apphb.com/rating/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+[![Current Version](https://vsmarketplacebadges.dev/version/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+[![Install Count](https://vsmarketplacebadges.dev/installs/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
+[![Ratings](https://vsmarketplacebadges.dev/rating/XiaodiYan.translator-helper.svg)](https://marketplace.visualstudio.com/items?itemName=XiaodiYan.translator-helper)
 
 **translator-helper** is a VS Code Extension to simplify the translation of documents, especially for the localization of Docs.
 
