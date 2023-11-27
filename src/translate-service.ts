@@ -1,4 +1,4 @@
-import googleTranslateApi from '@vitalets/google-translate-api';
+import {translate as googleTranslateApi} from '@vitalets/google-translate-api';
 
 export interface ITranslatorService {
   translate(text: string, source: string, target: string): Promise<string>;
@@ -29,7 +29,6 @@ export class GoogleCNTranslationService implements ITranslatorService {
       let result = await googleTranslateApi(text, {
         from: source,
         to: target,
-        tld: 'cn',
       });
       return result.text;
     } catch (error: any) {

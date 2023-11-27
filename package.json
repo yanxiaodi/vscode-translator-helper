@@ -126,6 +126,7 @@
         "@types/got": "^9.6.12",
         "@types/mocha": "^9.1.1",
         "@types/node": "14.x",
+        "@types/node-fetch": "^2.6.9",
         "@types/vscode": "^1.67.0",
         "@typescript-eslint/eslint-plugin": "^5.21.0",
         "@typescript-eslint/parser": "^5.21.0",
@@ -140,7 +141,7 @@
         "webpack-cli": "^4.9.2"
     },
     "dependencies": {
-        "@vitalets/google-translate-api": "^8.0.0"
+        "@vitalets/google-translate-api": "^9.1.0"
     },
     "__metadata": {
         "id": "a03f7447-1f1b-4984-a7e5-eeaf3e9c2e2c",
